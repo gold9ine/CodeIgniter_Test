@@ -41,7 +41,7 @@ class MY_Controller extends CI_Controller {
 	function _require_login($return_url){
         // 로그인이 되어 있지 않다면 로그인 페이지로 리다이렉션
         if(!$this->session->userdata('is_login')){
-            $this->load->helper('url');
+            // $this->load->helper('url');
             redirect('/auth/login?returnURL='.rawurlencode($return_url));
         }
     }

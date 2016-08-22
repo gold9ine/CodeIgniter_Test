@@ -20,6 +20,8 @@ class Topic extends MY_Controller {
 		$this->_sidebar();
 		$topic = $this->topic_model->get($id);
 		if(empty($topic)){
+			// 캐쉬 삭제
+			$this->cache->delete('topics');
 			log_message('error', 'topic의 값이 없습니다');       
 			show_error('topic의 값이 없습니다');
 		}
@@ -45,7 +47,7 @@ class Topic extends MY_Controller {
 	function add(){
 		// 로그인 필요
         // 로그인이 되어 있지 않다면 로그인 페이지로 리다이렉션
-        $this->_require_login(site_url('/topic/add'));
+		$this->_require_login(site_url('/topic/add'));
 
 		$this->_header();
 		$this->_sidebar();
